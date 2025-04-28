@@ -79,7 +79,7 @@ def four_point_transform(image, pts):
 # Find largest contour
 contours, _ = cv2.findContours(mask_clean, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 if not contours:
-    print("❌ No contours found in mask.")
+    print("No contours found in mask.")
     exit()
 
 contour = max(contours, key=cv2.contourArea)
@@ -87,10 +87,10 @@ peri = cv2.arcLength(contour, True)
 approx = cv2.approxPolyDP(contour, 0.02 * peri, True)
 
 if len(approx) == 4:
-    print("✅ Found 4-point contour")
+    print("Found 4-point contour")
     pts = approx.reshape(4, 2)
 else:
-    print("⚠️ Couldn't find 4-point polygon, using convex hull + minAreaRect")
+    print("⚠Couldn't find 4-point polygon, using convex hull + minAreaRect")
     hull = cv2.convexHull(contour)
     rect = cv2.minAreaRect(hull)
     box = cv2.boxPoints(rect)
@@ -100,4 +100,4 @@ else:
 # Warp the image
 scanned = four_point_transform(orig, pts)
 cv2.imwrite("scanned_output.jpg", scanned)
-print("✅ Scanned document saved as 'scanned_output.jpg'")
+print("Scanned document saved as 'scanned_output.jpg'")
