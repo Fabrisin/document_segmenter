@@ -158,4 +158,4 @@ if __name__ == "__main__":
 
     os.makedirs("checkpoints", exist_ok=True)
     torch.save(model.state_dict(), "checkpoints/document_segmenter.pth")
-    print("✅ Model saved to 'checkpoints/document_segmenter.pth'")
+    print("model saved to 'checkpoints/document_segmenter.pth'")
